@@ -9,31 +9,51 @@ on:
 
 jobs:
   build:
+    
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 程式碼
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: 建立 Node.js 環境
-        uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: '22'  # 或是根據專案所需設定合適的 Node.js 版本
 
-      - name: 安裝相依套件
-        run: npm install
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v4
 
       - name: 執行建置
         run: npm run build
+      
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment: production   # 指定使用 production 的環境，該環境中的 secret 會自動加載
+    if: github.ref == 'refs/heads/main' # 只在 main 分支上執行部署
     steps:
-      - uses: actions/checkout@v3
-      - name: deploy application
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         env:
-          VUE_APP_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
-          VUE_APP_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
-        run: |
-          echo "使用 WEBHOOK_URL: $VUE_APP_WEBHOOK_URL 部署應用"
-          # 這裡可以加入實際部署的命令
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        # If you're changing the branch from main,
+        # also change the `main` in `refs/heads/main`
+        # below accordingly.
+        if: github.ref == 'refs/heads/main'
+        with:
+          # 這裡的金鑰使用公開金鑰，須小心安全性的問題
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
