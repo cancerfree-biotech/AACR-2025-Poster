@@ -1,0 +1,40 @@
+name: Build and Deploy Vue App
+
+# 設定觸發來源：推送到 main 分支，或是接收到外部 webhook（透過 repository_dispatch）
+on:
+  push:
+    branches: [ main ]
+  repository_dispatch:
+    types: [ trigger-deploy ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 程式碼
+        uses: actions/checkout@v3
+
+      - name: 建立 Node.js 環境
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'  # 或是根據專案所需設定合適的 Node.js 版本
+
+      - name: 安裝相依套件
+        run: npm install
+
+      - name: 執行建置
+        run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production   # 指定使用 production 的環境，該環境中的 secret 會自動加載
+    steps:
+      - uses: actions/checkout@v3
+      - name: deploy application
+        env:
+          VUE_APP_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
+          VUE_APP_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
+        run: |
+          echo "使用 WEBHOOK_URL: $VUE_APP_WEBHOOK_URL 部署應用"
+          # 這裡可以加入實際部署的命令
+          npm run
