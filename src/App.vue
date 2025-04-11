@@ -102,7 +102,8 @@ export default {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-webhook-secret': this.webhookSecret // 傳入 webhook secret 供 n8n 驗證
+            'x-webhook-secret': this.webhookSecret, // 傳入 webhook secret 供 n8n 驗證
+            'source-url': window.location.href // 傳入來源網址
           },
           body: JSON.stringify(this.contactInfo)
         });
