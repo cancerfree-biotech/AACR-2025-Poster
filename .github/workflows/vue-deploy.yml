@@ -24,6 +24,9 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Build Vue app
+        env:
+          VITE_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
+          VITE_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
         run: npm run build
       
       - name: Upload production-ready build files
@@ -43,22 +46,10 @@ jobs:
         with:
           name: production-files
           path: ./dist
-      
-      - name: setup secrets from environment
-        env:
-          VITE_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
-          VITE_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
-        run: |
-          echo "VITE_WEBHOOK_URL=${VITE_WEBHOOK_URL}" 
-          echo "VITE_WEBHOOK_SECRET=${VITE_WEBHOOK_SECRET}"
+
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
-        env:
-          VITE_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
-          VITE_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
-
-        
         # If you're changing the branch from main,
         # also change the `main` in `refs/heads/main`
         # below accordingly.
