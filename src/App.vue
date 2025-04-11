@@ -75,6 +75,10 @@
 
 <script>
 export default {
+  mounted() {
+    console.log('VITE_WEBHOOK_URL:', import.meta.env.VITE_WEBHOOK_URL);
+    console.log('VITE_WEBHOOK_SECRET:', import.meta.env.VITE_WEBHOOK_SECRET);
+  },
   data() {
     return {
       showPoster: false,
