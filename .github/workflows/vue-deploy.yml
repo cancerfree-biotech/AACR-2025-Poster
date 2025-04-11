@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: 執行建置
+      - name: Build Vue app
         run: npm run build
       
       - name: Upload production-ready build files
