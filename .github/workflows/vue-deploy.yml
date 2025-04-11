@@ -21,7 +21,7 @@ jobs:
           node-version: '22'  # 或是根據專案所需設定合適的 Node.js 版本
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v4
+        uses: bahmutov/npm-install@v1
 
       - name: 執行建置
         run: npm run build
@@ -47,8 +47,8 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         env:
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+          VITE_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
+          VITE_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
         # If you're changing the branch from main,
         # also change the `main` in `refs/heads/main`
         # below accordingly.
