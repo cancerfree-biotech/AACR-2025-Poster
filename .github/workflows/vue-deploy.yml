@@ -54,6 +54,10 @@ jobs:
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
+        env:
+          VITE_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
+          VITE_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
+
         
         # If you're changing the branch from main,
         # also change the `main` in `refs/heads/main`
@@ -61,5 +65,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           # 這裡的金鑰使用公開金鑰，須小心安全性的問題
+
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+        
