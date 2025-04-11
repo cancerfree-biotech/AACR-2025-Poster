@@ -46,14 +46,12 @@ jobs:
       
       - name: setup secrets from environment
         env:
-          VITE_WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          VITE_WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
-        run: 
-          echo "WEBHOOK_URL=${{ secrets.WEBHOOK_URL }}" >> ./dist/.env
-          echo "WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }}" >> ./dist/.env
-          echo "WEBHOOK_URL=${{ secrets.WEBHOOK_URL }}" >> ${GITHUB_ENV}
-          echo "WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }}" >> ${GITHUB_ENV}
-          
+          VITE_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
+          VITE_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
+        run: |
+          echo "VITE_WEBHOOK_URL=${VITE_WEBHOOK_URL}" >> $GITHUB_ENV
+          echo "VITE_WEBHOOK_SECRET=${VITE_WEBHOOK_SECRET}" >> $GITHUB_ENV
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         
