@@ -35,11 +35,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: production   # 指定使用 production 的環境，該環境中的 secret 會自動加載
+    environment: n8n-auth   # 指定使用 production 的環境，該環境中的 secret 會自動加載
     if: github.ref == 'refs/heads/main' # 只在 main 分支上執行部署
     steps:
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
           name: production-files
           path: ./dist
@@ -47,8 +47,8 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         env:
-          VITE_WEBHOOK_URL: ${{ secrets.VUE_APP_WEBHOOK_URL }}
-          VITE_WEBHOOK_SECRET: ${{ secrets.VUE_APP_WEBHOOK_SECRET }}
+          VITE_WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          VITE_WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
         # If you're changing the branch from main,
         # also change the `main` in `refs/heads/main`
         # below accordingly.
