@@ -7,7 +7,7 @@ import vue from '@vitejs/plugin-vue'
 // })
 
 export default defineConfig({
-  base: '/CF-AACR-2025-Poster/',
+  base: '/',
   plugins: [
     vue()
   ]
