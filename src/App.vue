@@ -52,7 +52,7 @@
         <span class="bounce-text">
           Contact us
           <span class="mobile-break"></span>
-          to get more information
+          to get full posters.
         </span>
       </div>
     </div>
@@ -93,7 +93,7 @@ export default {
         {
           src: "/public/posters/IT-CF-Justin_AACR2025_poster-250304-4-010_1.png",
           info: "Automated real-time monitoring.",
-          details: "An Automated Approach for Real-time Monitoring of CTC Tumoroid Development. Click to view details."
+          details: "An Automated Approach for Real-time Monitoring of CTC Tumoroid Development."
         },
         {
           src: "/public/posters/LAB-poster-AACR2025-250408-3-010_1.png",
