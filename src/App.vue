@@ -91,12 +91,12 @@ export default {
       // 每一筆包含圖片來源、hover 時顯示的短描述 info 與展開後的詳細描述 details
       posters: [
         {
-          src: "./posters/IT-CF-Justin_AACR2025_poster-250304-4-010_1.png",
+          src: "/posters/IT-CF-Justin_AACR2025_poster-250304-4-010_1.png",
           info: "Automated real-time monitoring.",
           details: "An Automated Approach for Real-time Monitoring of CTC Tumoroid Development."
         },
         {
-          src: "./posters/LAB-poster-AACR2025-250408-3-010_1.png",
+          src: "/posters/LAB-poster-AACR2025-250408-3-010_1.png",
           info: "Translational platform overview. Click to view details.",
           details: "A translational circulating tumor cell platform integrating drug sensitivity screening and genomic profiling: insights from Antrodia cinnamomea in high-TMB brain tumors."
         }
