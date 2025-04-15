@@ -5,8 +5,35 @@
       <a href="https://cancerfree.io/en/" target="_blank" rel="noopener">
         <img src="./assets/cancerfree.svg" alt="Logo" class="logo" />
       </a>
+      <!-- 手機版：Logo 下顯示社群媒體 icon -->
+      
+      <div class="social-media-icons mobile-social">
+        <a href="https://www.facebook.com/CancerFreeBiotech/" target="_blank" rel="noopener">
+          <img src="./assets/icons8-facebook.svg" alt="Facebook" />
+
+        </a>
+        <a href="https://x.com/CancerFreeBio" target="_blank" rel="noopener">
+          <img src="./assets/icons8-x.svg" alt="Twitter" />
+        </a>
+        <a href="https://www.linkedin.com/company/cancerfree-biotech/" target="_blank" rel="noopener">
+          <img src="./assets/icons8-linkedin.svg" alt="LinkedIn" />
+        </a>
+      </div>
       <h1 class="desktop-title">CancerFree AACR 2025 Poster</h1>
       <h2 class="mobile-title">CancerFree <br> AACR 2025 Poster</h2>
+      <!-- 桌機版：Title 下顯示社群媒體 icon -->
+      <div class="social-media-icons desktop-social">
+        <a href="https://www.facebook.com/CancerFreeBiotech/" target="_blank" rel="noopener">
+          <img src="./assets/icons8-facebook.svg" alt="Facebook" />
+
+        </a>
+        <a href="https://x.com/CancerFreeBio" target="_blank" rel="noopener">
+          <img src="./assets/icons8-x.svg" alt="Twitter" />
+        </a>
+        <a href="https://www.linkedin.com/company/cancerfree-biotech/" target="_blank" rel="noopener">
+          <img src="./assets/icons8-linkedin.svg" alt="LinkedIn" />
+        </a>
+      </div>
     </header>
 
     <!-- Poster Images with Hover Info -->

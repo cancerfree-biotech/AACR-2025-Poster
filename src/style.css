@@ -19,6 +19,8 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  margin: 0;
+  padding: 0;
 }
 a:hover {
   color: #535bf2;
@@ -36,30 +38,81 @@ a:hover {
   .app-header {
     flex-direction: column;
     align-items: center;
-    text-align: center; /* 新增：置中 header 內容 */
-    gap: 10px;
-  }
-  .desktop-title {
-    display: none;
+    gap: 0px; /* 減少整體間距 */
+    text-align: center;
   }
   .mobile-title {
     display: block;
     font-size: 1.5em;
-    margin-top: 5px;
-    text-align: center; /* 新增：置中手機版 title */
+    margin-top: 0px; /* 減少標題與其他元素之間的間距 */
+    text-align: center;
   }
+  /* 其他手機專用的樣式 */
   .contact-button {
-    font-size: 1.2em;
+    font-size: 0.9em;
   }
   .mobile-break {
     display: block;
   }
 }
 
-
 .app-header .logo {
   width: 120px;
   height: auto;
+}
+
+.social-media-icons {
+  margin-top: 0px;
+  text-align: center;
+}
+
+.social-media-icons a img {
+  width: 30px;
+  height: auto;
+  margin-top: 10px;
+  padding: 5px; /* 新增：5px padding */
+}
+@media (max-width: 600px) {
+  .social-media-icons a img {
+    padding: 0 15px; /* 僅左右各 5px */
+    margin-top: 0px;
+  }
+}
+
+/* 預設：桌機版顯示 .desktop-social，隱藏 .mobile-social */
+.desktop-social {
+  display: block;
+}
+.mobile-social {
+  display: none;
+}
+
+/* 手機版切換 */
+@media (max-width: 600px) {
+  .desktop-social {
+    display: none;
+  }
+  .mobile-social {
+    display: block;
+  }
+}
+/* 預設：桌機版顯示 .desktop-social，隱藏 .mobile-social */
+.desktop-social {
+  display: block;
+}
+
+.mobile-social {
+  display: none;
+}
+
+/* 手機版切換 */
+@media (max-width: 600px) {
+  .desktop-social {
+    display: none;
+  }
+  .mobile-social {
+    display: block;
+  }
 }
 /* General Styles */
 body {
@@ -74,6 +127,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 0;
 }
 
 h1, h2 {
@@ -253,7 +307,7 @@ button:focus-visible {
 .app-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 0px;
   padding: 5px;
   background-color: #cdf1ef;
   color: rgb(0, 0, 0);
@@ -343,7 +397,12 @@ button:focus-visible {
   position: relative;
   top: 8px;
 }
-
+@media (max-width: 600px) {
+  .bounce-text {
+    font-size: 1.2em;
+  }
+  /* 如果有其他需要調整字體大小的元件也可以一起修改 */
+}
 .contact-us-container {
   display: flex;
   align-items: center;
@@ -408,5 +467,3 @@ button:focus-visible {
     display: block; /* 手機版中間換行 */
   }
 }
-
-/* ...existing code... */
