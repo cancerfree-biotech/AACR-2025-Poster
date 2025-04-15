@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .env
+dist/index.html
+dist/vite.svg
+dist/assets/index-CpEdLxDu.css
+dist/assets/IT-CF-Justin_AACR2025_poster-250304-4-010_1-B6CYaHHP.png
