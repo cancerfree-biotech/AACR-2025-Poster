@@ -100,9 +100,45 @@
           <label for="title">Title:</label>
           <input type="text" id="title" v-model="contactInfo.title" />
 
-          <label for="message">Message:</label>
-          <textarea id="message" v-model="contactInfo.message"></textarea>
+          
 
+          <label>What brings you here today?<br/>
+            Select all that apply and we’ll get back to you with relevant information:
+          </label>
+          <div class="checkbox-group">
+            <div>
+              <label>
+                <input type="checkbox" value="I'm interested in learning more about your technology" v-model="contactInfo.reasons" />
+                I'm interested in learning more about your technology
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" value="I'm exploring potential collaboration opportunities" v-model="contactInfo.reasons" />
+                I'm exploring potential collaboration opportunities
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" value="I'm a customer/user with a question" v-model="contactInfo.reasons" />
+                I'm a customer/user with a question
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" value="I'm interested in partnership or investment" v-model="contactInfo.reasons" />
+                I'm interested in partnership or investment
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" value="Just curious / browsing" v-model="contactInfo.reasons" />
+                Just curious / browsing
+              </label>
+            </div>
+          </div>
+          <label for="message">Please let us know if you have any questions.</label>
+          <textarea id="message" v-model="contactInfo.message"></textarea>
           <button type="submit">Send</button>
           <button type="button" @click="showContactForm = false">Cancel</button>
         </form>
@@ -136,7 +172,8 @@ export default {
         email: '',
         company: '',
         title: '',
-        message: ''
+        message: '',
+        reasons: []
       },
       webhookUrl: import.meta.env.VITE_WEBHOOK_URL,
       webhookSecret: import.meta.env.VITE_WEBHOOK_SECRET
@@ -148,6 +185,12 @@ export default {
     },
     async submitContactInfo() {
       try {
+        const payload = {
+          ...this.contactInfo,
+          reasons: Array.isArray(this.contactInfo.reasons)
+            ? this.contactInfo.reasons.join(', ')
+            : this.contactInfo.reasons
+        };
         const response = await fetch(this.webhookUrl, {
           method: 'POST',
           headers: {
@@ -155,7 +198,7 @@ export default {
             'x-webhook-secret': this.webhookSecret, // 傳入 webhook secret 供 n8n 驗證
             'source-url': window.location.href // 傳入來源網址
           },
-          body: JSON.stringify(this.contactInfo)
+          body: JSON.stringify(payload)
         });
         const result = await response.json();
         if (result.message === "Workflow was started") {
