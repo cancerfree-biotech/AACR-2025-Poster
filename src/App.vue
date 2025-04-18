@@ -120,8 +120,8 @@
             </div>
             <div>
               <label>
-                <input type="checkbox" value="I'm a customer/user with a question" v-model="contactInfo.reasons" />
-                I'm a customer/user with a question
+                <input type="checkbox" value="I'm a customer/user with a question (please include the question below)" v-model="contactInfo.reasons" />
+                I'm a customer/user with a question (please include the question below)
               </label>
             </div>
             <div>
