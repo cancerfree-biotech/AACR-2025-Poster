@@ -6,7 +6,7 @@
         <img src="./assets/cancerfree.svg" alt="Logo" class="logo" />
       </a>
       <!-- 手機版：Logo 下顯示社群媒體 icon -->
-      
+
       <div class="social-media-icons mobile-social">
         <a href="https://www.facebook.com/CancerFreeBiotech/" target="_blank" rel="noopener">
           <img src="./assets/icons8-facebook.svg" alt="Facebook" />
@@ -38,19 +38,9 @@
 
     <!-- Poster Images with Hover Info -->
     <div class="poster-container">
-      <div 
-        class="poster-wrapper" 
-        v-for="(poster, index) in posters" 
-        :key="index"
-        @mouseover="hoveringPoster = index"
-        @mouseleave="hoveringPoster = null"
-      >
-        <img 
-          :src="poster.src" 
-          alt="Poster" 
-          class="poster-image" 
-          @click="openPoster(poster)"
-        />
+      <div class="poster-wrapper" v-for="(poster, index) in posters" :key="index" @mouseover="hoveringPoster = index"
+        @mouseleave="hoveringPoster = null">
+        <img :src="poster.src" alt="Poster" class="poster-image" @click="openPoster(poster)" />
         <div class="poster-info" v-if="hoveringPoster === index">
           <p>{{ poster.info }}</p>
         </div>
@@ -60,11 +50,7 @@
     <!-- Fullscreen Poster Modal -->
     <div v-if="activePoster" class="modal-overlay" @click="activePoster = null">
       <div class="modal-content" @click.stop>
-        <img 
-          :src="activePoster.src" 
-          alt="Poster" 
-          class="fullscreen-poster"
-        />
+        <img :src="activePoster.src" alt="Poster" class="fullscreen-poster" />
         <div class="poster-details">
           <h3>Poster Information</h3>
           <p>{{ activePoster.details }}</p>
@@ -86,8 +72,9 @@
 
     <!-- Contact Us Modal -->
     <div v-if="showContactForm" class="modal-overlay">
-      <div class="modal">
+      <div class="modal scrollable">
         <form @submit.prevent="submitContactInfo">
+          <!-- 表單內容 -->
           <label for="name">Name:</label>
           <input type="text" id="name" v-model="contactInfo.name" required />
 
@@ -100,45 +87,21 @@
           <label for="title">Title:</label>
           <input type="text" id="title" v-model="contactInfo.title" />
 
-          
-
-          <label>What brings you here today?<br/>
+          <label>What brings you here today?<br />
             Select all that apply and we’ll get back to you with relevant information:
           </label>
           <div class="checkbox-group">
-            <div>
+            <div v-for="(option, index) in reasonsOptions" :key="index">
               <label>
-                <input type="checkbox" value="I'm interested in learning more about your technology" v-model="contactInfo.reasons" />
-                I'm interested in learning more about your technology
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="checkbox" value="I'm exploring potential collaboration opportunities" v-model="contactInfo.reasons" />
-                I'm exploring potential collaboration opportunities
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="checkbox" value="I'm a customer/user with a question (please include the question below)" v-model="contactInfo.reasons" />
-                I'm a customer/user with a question (please include the question below)
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="checkbox" value="I'm interested in partnership or investment" v-model="contactInfo.reasons" />
-                I'm interested in partnership or investment
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="checkbox" value="Just curious / browsing" v-model="contactInfo.reasons" />
-                Just curious / browsing
+                <input type="checkbox" :value="option" v-model="contactInfo.reasons" />
+                {{ option }}
               </label>
             </div>
           </div>
+
           <label for="message">Please let us know if you have any questions.</label>
           <textarea id="message" v-model="contactInfo.message"></textarea>
+
           <button type="submit">Send</button>
           <button type="button" @click="showContactForm = false">Cancel</button>
         </form>
@@ -175,6 +138,13 @@ export default {
         message: '',
         reasons: []
       },
+      reasonsOptions: [
+        "I'm interested in learning more about your technology",
+        "I'm exploring potential collaboration opportunities",
+        "I'm a customer/user with a question (please include the question below)",
+        "I'm interested in partnership or investment",
+        "Just curious / browsing"
+      ],
       webhookUrl: import.meta.env.VITE_WEBHOOK_URL,
       webhookSecret: import.meta.env.VITE_WEBHOOK_SECRET
     };

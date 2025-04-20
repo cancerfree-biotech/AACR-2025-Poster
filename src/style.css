@@ -196,7 +196,11 @@ button:focus-visible {
 .email-form button:hover {
   background-color: #0056b3;
 }
-
+.modal.scrollable {
+  max-height: 80vh;       /* 限制高度 */
+  overflow-y: auto;       /* 內容超出時可滾動 */
+  padding: 20px;          /* 根據需要調整 padding */
+}
 /* Contact Button Styles */
 .contact-button {
   padding: 10px 20px;
