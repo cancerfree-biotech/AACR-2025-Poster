@@ -149,6 +149,11 @@ export default {
       webhookSecret: import.meta.env.VITE_WEBHOOK_SECRET
     };
   },
+  watch: {
+    showContactForm(newVal) {
+      document.body.style.overflow = newVal ? 'hidden' : 'auto';
+    }
+  },
   methods: {
     openPoster(poster) {
       this.activePoster = poster;
