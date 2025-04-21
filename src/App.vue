@@ -13,14 +13,17 @@
 
         </a>
         <a href="https://x.com/CancerFreeBio" target="_blank" rel="noopener">
-          <img src="./assets/icons8-x.svg" alt="Twitter" />
+          <img src="./assets/icons8-x.svg" alt="X" />
         </a>
         <a href="https://www.linkedin.com/company/cancerfree-biotech/" target="_blank" rel="noopener">
           <img src="./assets/icons8-linkedin.svg" alt="LinkedIn" />
         </a>
+        <a href="https://youtube.com/channel/UC4F1TrhBWThR8IPivO01llw?si=Ea50mPMsy4-QZmAy" target="_blank" rel="noopener">
+          <img src="./assets/icons8-youtube.svg" alt="Youtube" />
+        </a>
       </div>
-      <h1 class="desktop-title">CancerFree AACR 2025 Poster</h1>
-      <h2 class="mobile-title">CancerFree <br> AACR 2025 Poster</h2>
+      <h1 class="desktop-title">CancerFree AACR 2025</h1>
+      <h1 class="mobile-title">CancerFree AACR 2025</h1>
       <!-- 桌機版：Title 下顯示社群媒體 icon -->
       <div class="social-media-icons desktop-social">
         <a href="https://www.facebook.com/CancerFreeBiotech/" target="_blank" rel="noopener">
@@ -28,21 +31,28 @@
 
         </a>
         <a href="https://x.com/CancerFreeBio" target="_blank" rel="noopener">
-          <img src="./assets/icons8-x.svg" alt="Twitter" />
+          <img src="./assets/icons8-x.svg" alt="X" />
         </a>
         <a href="https://www.linkedin.com/company/cancerfree-biotech/" target="_blank" rel="noopener">
           <img src="./assets/icons8-linkedin.svg" alt="LinkedIn" />
         </a>
+        <a href="https://youtube.com/channel/UC4F1TrhBWThR8IPivO01llw?si=Ea50mPMsy4-QZmAy" target="_blank" rel="noopener">
+          <img src="./assets/icons8-youtube.svg" alt="Youtube" />
+        </a>
       </div>
     </header>
 
-    <!-- Poster Images with Hover Info -->
-    <div class="poster-container">
-      <div class="poster-wrapper" v-for="(poster, index) in posters" :key="index" @mouseover="hoveringPoster = index"
-        @mouseleave="hoveringPoster = null">
+    <!-- Poster Images with Caption Above -->
+    <p class="attention">Click poster image or contact us to get more detail.</p>    <div class="poster-container">
+      <div class="poster-wrapper" v-for="(poster, index) in posters" :key="index">
+        <!-- 新增：永遠顯示的資訊區塊，位於圖片前面 -->
+        <div class="poster-caption">
+          <p>{{ poster.title }}</p>
+        </div>
         <img :src="poster.src" alt="Poster" class="poster-image" @click="openPoster(poster)" />
+        <!-- 如果你還想保留鼠標懸浮資訊，這區域可以保留或移除 -->
         <div class="poster-info" v-if="hoveringPoster === index">
-          <p>{{ poster.info }}</p>
+          <p>{{ poster.title }}</p>
         </div>
       </div>
     </div>
@@ -52,8 +62,12 @@
       <div class="modal-content" @click.stop>
         <img :src="activePoster.src" alt="Poster" class="fullscreen-poster" />
         <div class="poster-details">
-          <h3>Poster Information</h3>
-          <p>{{ activePoster.details }}</p>
+
+          <h4>{{ activePoster.title }}</h4>
+          <p style="margin: 0;text-align: left;"><strong>ID:</strong> {{ activePoster.id }}</p>
+          <p style="margin: 0;text-align: left;"><strong>Location:</strong> {{ activePoster.location }}</p>
+          <p style="margin: 0;text-align: left;"><strong>Board:</strong> {{ activePoster.board }}</p>
+          
         </div>
       </div>
     </div>
@@ -119,12 +133,21 @@ export default {
         {
           src: "/posters/IT-CF-Justin_AACR2025_poster-250304-4-010_1.png",
           info: "Automated real-time monitoring.",
-          details: "An Automated Approach for Real-time Monitoring of CTC Tumoroid Development."
+          details: "An Automated Approach for Real-time Monitoring of CTC Tumoroid Development.",
+          title: "An Automated Approach for Real-time Monitoring of CTC Tumoroid Development",
+          id: "#9830 LB109",
+          location: "Poster Section 51",
+          board: "Board 10"
+
         },
         {
           src: "/posters/LAB-poster-AACR2025-250408-3-010_1.png",
           info: "Translational platform overview. Click to view details.",
-          details: "A translational circulating tumor cell platform integrating drug sensitivity screening and genomic profiling: insights from Antrodia cinnamomea in high-TMB brain tumors."
+          details: "A translational circulating tumor cell platform integrating drug sensitivity screening and genomic profiling: insights from Antrodia cinnamomea in high-TMB brain tumors.",
+          title: "A translational circulating tumor cell platform integrating drug sensitivity screening and genomic profiling: insights from Antrodia cinnamomea in high-TMB brain tumors",
+          id: "1993",
+          location: "Poster Section 29",
+          board: "Board 28"
         }
       ],
       hoveringPoster: null,

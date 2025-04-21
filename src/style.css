@@ -99,6 +99,7 @@ a:hover {
 /* 預設：桌機版顯示 .desktop-social，隱藏 .mobile-social */
 .desktop-social {
   display: block;
+  margin-left: auto;
 }
 
 .mobile-social {
@@ -156,11 +157,27 @@ button:focus-visible {
 .card {
   padding: 2em;
 }
+.attention {
+  animation: pulse 2s infinite;
+  text-align: center;
+  margin: 0;
+}
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 #app {
   max-width: 1000px; /* 增加頁面寬度 */
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
   background: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -328,28 +345,78 @@ button:focus-visible {
   width: 150px;
   height: 80px;
 }
+/* 全域設定：水平排列 */
+
+/* caption container 限制寬度並置中 */
+/* 固定 caption 最小高度，讓不同文字數量的 caption 高度保持一致 */
+/* caption 區固定 50px 高度 */
+.poster-caption {
+  height: 90px; 
+  text-align: center;
+  overflow: hidden;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-weight: bold;  /* 使用粗體 */
+}
 
 .poster-container {
-  text-align: center;
-  margin: 20px 0;
+  display: flex;
+  flex-wrap: nowrap; /* 強制水平排列 */
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+}
+
+/* 手機版改成垂直排列 */
+@media (max-width: 600px) {
+  .poster-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .poster-wrapper {
+    width: 90% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+  
+  .poster-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .poster-caption {
+    height: auto;       /* 自動高度讓內容完整展現 */
+    overflow: visible;  /* 顯示所有內容 */
+  }
 }
 
 .poster-wrapper {
+  width: 400px;
+  /* 移除或調整固定高度 */
+  /* height: 380px; */
+  display: flex;
+  flex-direction: column;
   position: relative;
-  display: inline-block;
+  /* 可加入 margin-bottom 如果需要間距 */
 }
 
+/* 可設定 poster-image 固定寬度，確保排列效果明顯 */
 .poster-image {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: auto;              /* 依圖片自身比例調整 */
+  /* 移除 object-fit 以免產生 letterbox 效果 */
+  /* object-fit: contain; */
+  background-color: transparent; /* 移除背景色 */
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   cursor: pointer;
-}
-
-.poster-wrapper {
-  position: relative;
-  display: inline-block;
 }
 
 .poster-info {
@@ -370,6 +437,13 @@ button:focus-visible {
   opacity: 1;
 }
 
+.poster-caption p {
+  white-space: normal;       /* 允許換行 */
+  word-break: break-word;    /* 長字自動斷行 */
+  overflow-wrap: break-word; /* 防止溢出 */
+  margin: 0;                 /* 如有需要調整間距 */
+}
+
 .fullscreen-poster {
   max-width: 90%;
   max-height: 90%;
@@ -378,12 +452,12 @@ button:focus-visible {
 }
 
 .poster-details {
-  margin-top: 20px;
-  text-align: center;
+  margin: 0;
+  text-align: left;
 }
 
 .poster-details h3 {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   font-size: 1.5em;
   color: #333;
 }
