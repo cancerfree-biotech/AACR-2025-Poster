@@ -10,16 +10,15 @@
       <div class="social-media-icons mobile-social">
         <a href="https://www.facebook.com/CancerFreeBiotech/" target="_blank" rel="noopener">
           <img src="./assets/icons8-facebook.svg" alt="Facebook" />
-
-        </a>
-        <a href="https://x.com/CancerFreeBio" target="_blank" rel="noopener">
-          <img src="./assets/icons8-x.svg" alt="X" />
         </a>
         <a href="https://www.linkedin.com/company/cancerfree-biotech/" target="_blank" rel="noopener">
-          <img src="./assets/icons8-linkedin.svg" alt="LinkedIn" />
+          <img src="./assets/icons8-linkedin.svg" alt="LinkedIn"/>
         </a>
         <a href="https://youtube.com/channel/UC4F1TrhBWThR8IPivO01llw?si=Ea50mPMsy4-QZmAy" target="_blank" rel="noopener">
           <img src="./assets/icons8-youtube.svg" alt="Youtube" />
+        </a>
+        <a href="https://cancerfree.io" target="_blank" rel="noopener">
+          <img src="./assets/icons8-globe-50.png" alt="Official Website"  style="width: 25px; height: auto;transform: translateY(-15%);"/>
         </a>
       </div>
       <h1 class="desktop-title">CancerFree AACR 2025</h1>
@@ -28,16 +27,15 @@
       <div class="social-media-icons desktop-social">
         <a href="https://www.facebook.com/CancerFreeBiotech/" target="_blank" rel="noopener">
           <img src="./assets/icons8-facebook.svg" alt="Facebook" />
-
-        </a>
-        <a href="https://x.com/CancerFreeBio" target="_blank" rel="noopener">
-          <img src="./assets/icons8-x.svg" alt="X" />
         </a>
         <a href="https://www.linkedin.com/company/cancerfree-biotech/" target="_blank" rel="noopener">
           <img src="./assets/icons8-linkedin.svg" alt="LinkedIn" />
         </a>
         <a href="https://youtube.com/channel/UC4F1TrhBWThR8IPivO01llw?si=Ea50mPMsy4-QZmAy" target="_blank" rel="noopener">
           <img src="./assets/icons8-youtube.svg" alt="Youtube" />
+        </a>
+        <a href="https://cancerfree.io" target="_blank" rel="noopener">
+          <img src="./assets/icons8-globe-50.png" alt="Official Website" style="width: 25px; height: auto;transform: translateY(-8%);"/>
         </a>
       </div>
     </header>
