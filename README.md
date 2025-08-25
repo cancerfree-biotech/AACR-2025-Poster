@@ -9,7 +9,7 @@ Please find attached the PDFs of our AACR 2025 posters:
 
 If you included any questions in your submission, we will respond as soon as possible. For additional inquiries, feel free to contact us at:
 
-[melody.shiau@cancerfree.io] (emailto:melody.shiau@cancerfree.io)
+[melody.shiau@cancerfree.io](emailto:melody.shiau@cancerfree.io)
 
 Best regards,
 
